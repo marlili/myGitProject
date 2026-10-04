@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Increment and decrement buttons for the number of travellers
 class TravellerCounter extends StatelessWidget {
   const TravellerCounter({
     super.key,
@@ -11,7 +12,9 @@ class TravellerCounter extends StatelessWidget {
 
   final ThemeData theme;
   final int _personCount;
+  /// Called when decrement is pressed
   final VoidCallback onDecrement;
+  /// Called when increment is pressed
   final VoidCallback onIncrement;
 
   @override

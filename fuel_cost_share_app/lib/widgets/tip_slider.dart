@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Slider for choosing the tip from 0 to 50 percent
 class TipSlider extends StatelessWidget {
   const new({
     super.key,
@@ -8,6 +9,7 @@ class TipSlider extends StatelessWidget {
   });
 
   final double _giftPercentage;
+  /// Called with the new value when the slider moves
   final ValueChanged<double> percentageChange;
 
   @override

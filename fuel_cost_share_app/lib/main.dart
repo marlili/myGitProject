@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/// Main screen: splits fuel cost and tip between travellers.
 class Fgift extends StatefulWidget {
   const Fgift({super.key});
 
@@ -28,19 +29,26 @@ class Fgift extends StatefulWidget {
   State<Fgift> createState() => _FgiftState();
 }
 
+/// Holds the user's inputs.
 class _FgiftState extends State<Fgift> {
+  /// Number of travellers with minimum of 1
   int _personCount = 1;
+  /// Fuel cost entered by the user
   double _fuelTotalCost = 0.0;
+  /// Tip as a fraction 
   double _giftPercentage = 0.0;
 
+  /// Cost per traveller including tip
   double totalPerTraveller() {
     return ((_fuelTotalCost * _giftPercentage) + (_fuelTotalCost)) / _personCount;
   }
 
+  /// Total tip for the group
   double totalGift() {
     return ((_fuelTotalCost * _giftPercentage));
   }
 
+  /// Removes a traveller that stops at 1
   void decrement() {
     setState(() {
       if (_personCount > 1) {
@@ -49,18 +57,21 @@ class _FgiftState extends State<Fgift> {
     });
   }
 
+  /// Adds a traveller.
   void increment() {
     setState(() {
       _personCount++;
     });
   }
 
+  /// Updates the tip from the slider.
   void percentageChange(double value) {
     setState(() {
       _giftPercentage = value;
     });
   }
 
+  // The main widget containing the application 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -111,11 +122,12 @@ class _FgiftState extends State<Fgift> {
                     keyboardType: TextInputType.number,
                     onChanged: (value) {
                       setState(() {
+                        // Invalid input counts as 0
                         _fuelTotalCost = double.tryParse(value) ?? 0;             
                       });
                     },
                   ),
-                  //Split Bill area
+                  // Split bill area
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
@@ -131,6 +143,7 @@ class _FgiftState extends State<Fgift> {
                       ],
                     ),
                   ),
+                  // Tip area
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
