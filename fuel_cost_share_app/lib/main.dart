@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_cost_share_app/widgets/traveller_counter.dart';
 import 'package:fuel_cost_share_app/widgets/tip_slider.dart';
+import 'package:fuel_cost_share_app/widgets/fuel_cost_text_field.dart';
 
 
 void main() {
@@ -64,10 +65,18 @@ class _FgiftState extends State<Fgift> {
     });
   }
 
-  /// Updates the tip from the slider.
+  /// Updates the tip from the slider
   void percentageChange(double value) {
     setState(() {
       _giftPercentage = value;
+    });
+  }
+
+  /// Update the fuel cost from the entered value
+  void fuelCostChange(String value) {
+    setState(() {
+      /// Invalid input counts as 0
+       _fuelTotalCost = double.tryParse(value) ?? 0;             
     });
   }
 
@@ -114,19 +123,7 @@ class _FgiftState extends State<Fgift> {
               ),
               child: Column(
                 children: [
-                  TextField(
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Enter Fuel Cost',
-                    ),
-                    keyboardType: TextInputType.number,
-                    onChanged: (value) {
-                      setState(() {
-                        // Invalid input counts as 0
-                        _fuelTotalCost = double.tryParse(value) ?? 0;             
-                      });
-                    },
-                  ),
+                  FuelCostTextField(fuelCostChange: fuelCostChange),
                   // Split bill area
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
