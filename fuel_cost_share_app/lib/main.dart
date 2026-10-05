@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fuel_cost_share_app/widgets/traveller_counter.dart';
 import 'package:fuel_cost_share_app/widgets/tip_slider.dart';
 import 'package:fuel_cost_share_app/widgets/fuel_cost_text_field.dart';
+import 'package:fuel_cost_share_app/widgets/total_per_traveller_card.dart';
 
 
 void main() {
@@ -95,25 +96,7 @@ class _FgiftState extends State<Fgift> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Container(
-            padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.inversePrimary,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              children: [
-                Text('Total Fuel Cost Per Traveller', style: style),
-                Text(
-                  '£${total.toStringAsFixed(2)}',
-                  style: style.copyWith(
-                    color: theme.colorScheme.onPrimary,
-                    fontSize: theme.textTheme.displaySmall?.fontSize,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          TotalPerTravellerCard(style: style, total: total, theme: theme),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -162,5 +145,6 @@ class _FgiftState extends State<Fgift> {
     );
   }
 }
+
 
 
